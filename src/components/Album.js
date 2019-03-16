@@ -4,11 +4,10 @@ import albumData from './../data/albums';
 class Album extends Component {
   constructor(props) {
      super(props);
-   }
 
 const album = albumData.find( album => {
   return album.slug === this.props.match.params.slug
-    });
+});
 
   this.state = {
     album: album,
@@ -63,8 +62,7 @@ render() {
              <col id="song-duration-column" />
            </colgroup>
            <tbody>
-             {
-               this.state.album.songs.map( (song, index) =>
+             {this.state.album.songs.map( (song, index) =>
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
                    <td className="song-actions">
                      <button>
@@ -74,14 +72,14 @@ render() {
                      </button>
                    </td>
                    <td className="song-title">{song.title}</td>
-                   <td className="song-duration">{this.formatTime(song.duration)}</td>
+                   <td className="song-duration">{song.duration}</td>
                  </tr>
-               )
-             }
+               )}
            </tbody>
          </table>
       </section>
     );
+  }
 }
 
 export default Album;
