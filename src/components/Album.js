@@ -15,7 +15,10 @@ const album = albumData.find( album => {
     currentSong: album.songs[0],
     currentTime: 0,
     duration: album.songs[0].duration,
-    isPlaying: false
+    volume: 0.5,
+    isPlaying: false,
+    hovered: '',
+
   };
 
   this.audioElement = document.createElement('audio');
@@ -39,7 +42,7 @@ const album = albumData.find( album => {
       },
       durationchange: e => {
         this.setState({ duration: this.audioElement.duration });
-      }
+      },
     };
     this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
     this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
@@ -93,6 +96,61 @@ const album = albumData.find( album => {
       this.setState({ currentTime: newTime });
     }
 
+    handleVolumeChange(e) {
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+    this.setState({ volume: newVolume });
+  }
+
+  handleVolumeUpClick(e) {
+    if (this.state.volume < 1) {
+      const newVolume = this.state.volume + 0.1;
+      this.audioElement.volume = Math.min(newVolume, 1);
+      this.setState({ volume: newVolume });
+    } else this.setState({ volume: 1 });
+  }
+
+  handleVolumeDownClick(e) {
+    if (this.state.volume > 0) {
+      const newVolume = this.state.volume - 0.1;
+      this.audioElement.volume = Math.max(0, newVolume);
+      this.setState({ volume: newVolume });
+    } else this.setState({ volume: 0 });
+  }
+
+    getPlayIcon(index, song) {
+      if (this.state.isPlaying && this.state.currentSong === song ) {
+        return <span className="ion-pause"></span>;
+      }
+
+      if (this.state.hovered === index) {
+        return <span className="ion-play"></span>;
+      }
+
+      return <span className="song-number">{index+1}</span>;
+    }
+
+    handleOnMouseEnter(index) {
+      this.setState({
+        hovered: index,
+      })
+    }
+
+    formatTime(timeParam){
+      if (isNaN(timeParam))
+        return "-:--";
+
+      var minutes = Math.floor(timeParam / 60);
+      var seconds = (Math.floor(timeParam) % 60);
+
+      if (minutes < 10) {minutes = "0" + minutes;}
+      if (seconds < 10) {seconds = "0" + seconds;}
+      var time = minutes + ":" + seconds;
+      return time;
+  }
+
+
+
 render() {
     return (
       <section className="album">
@@ -114,10 +172,8 @@ render() {
              {this.state.album.songs.map( (song, index) =>
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
                    <td className="song-actions">
-                     <button>
-                       <span className="song-number">{index+1}</span>
-                       <span className="ion-play"></span>
-                       <span className="ion-pause"></span>
+                     <button onMouseEnter={() => this.handleOnMouseEnter(index)}>
+                      {this.getPlayIcon(index, song)}
                      </button>
                    </td>
                    <td className="song-title">{song.title}</td>
@@ -130,11 +186,14 @@ render() {
              isPlaying={this.state.isPlaying}
              currentSong={this.state.currentSong}
              currentTime={this.audioElement.currentTime}
+             currentVolume={this.audioElement.currentVolume}
              duration={this.audioElement.duration}
              handleSongClick={() => this.handleSongClick(this.state.currentSong)}
              handlePrevClick={() => this.handlePrevClick()}
              handleNextClick={() => this.handleNextClick()}
              handleTimeChange={(e) => this.handleTimeChange(e)}
+             handleVolumeChange={(e) => this.handleVolumeChange(e)}
+             formatTime={(e) => this.formatTime(e)}
            />
     </section>
     );
