@@ -2,7 +2,9 @@
   "name": "bloc-jams-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dkravtsova1995.github.io/bloc-jams-react2",
   "dependencies": {
+    "gh-pages": "^2.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",
@@ -11,7 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "deploy": "gh-pages -d dist",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

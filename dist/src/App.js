@@ -24,11 +24,6 @@ class App extends Component {
           <Route path="/library" component={Library} />
           <Route path="/album/:slug" component={Album} />
         </main>
-        <footer>
-          <div className="footer">
-            <p>Created by Daria Kravtsova</p>
-          </div>
-        </footer>
       </div>
     );
   }

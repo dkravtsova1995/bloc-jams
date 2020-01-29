@@ -87,51 +87,43 @@
   text-align: center;
 }
 
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-  .main-content{
-    flex-direction: column;
-  }
-}
 
 .icon {
   font-size: 6rem;
   color: #000;
 }
 
-.footer{
-  font-family: 'Palanquin', sans-serif;
-  background-color: #000;
-  display: flex;
-  width:100%;
-  height: auto;
+@media screen and (max-width: 800px) { /* Mobile */
+  .banner {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-title {
+    font-size: 240%;
+  }
+
+  .point {
+    flex-flow: column;
+    min-width: 300px;
+    padding: 5rem 0 0 0;
+  }
 }
 
-.footer p{
-  color:white;
-  flex:1;
-  font-size:15px;
-  padding: 10px;
-  text-align: center;
-}
 
 
 /* Library*/
 
-.library{
+
+.library {
   width: 85%;
   padding: 0 1rem;
   margin: auto;
 }
 
-.library-cover a{
-  font-family: 'Palanquin', sans-serif;
+.album-link {
   position: relative;
   color: #000;
-  text-decoration: none;
   display: inline-block;
   margin: 2.5rem;
   padding: 0.1rem;
@@ -141,12 +133,12 @@
   transition: top ease 0.2s;
 }
 
-.library-cover a:hover {
+.album-link:hover {
   top: -10px;
   transition: 0.2s;
 }
 
-.library-cover img {
+.album-link img {
   width: 20rem;
   user-drag: none;
   user-select: none;
@@ -157,7 +149,6 @@
 }
 
 .album-name {
-  font-family: 'Palanquin', sans-serif;
   font-weight: bolder;
   font-size: 115%;
   margin: auto;
@@ -165,7 +156,6 @@
 }
 
 .album-artist {
-  font-family: 'Palanquin', sans-serif;
   color: #000;
   margin: auto;
   width: fit-content;
@@ -193,11 +183,11 @@
 
 button {
   background: transparent;
-  color: white;
+  color: #000;
   border: none;
 }
 
-buttons:focus {
+button:focus {
   outline: none;
 }
 
@@ -215,6 +205,9 @@ buttons:focus {
   text-align: center;
 }
 
+.invisible {
+  display: none;
+}
 
 .song {
   line-height: 3rem;
@@ -232,7 +225,7 @@ buttons:focus {
 }
 
 .song:hover {
-  background: grey;
+  background: #e3e3e3;
 }
 
 .song:hover .song-number {
@@ -321,7 +314,7 @@ input[type=range]:hover::-webkit-slider-thumb {
   height: 1.2rem;
   width: 1.2rem;
   margin-top: -0.46rem;
-  color: #000;
+  color: #f50057;
   transition: 0.1s;
 }
 
@@ -357,50 +350,47 @@ input[type=range]:focus {
   overflow: hidden;
 }
 
-#previous next {
-  font-size: 2rem;
+.player-bar-controls {
+  padding: 1rem;
+}
+
+.play-icon {
+  color: #fff;
+  font-size: 2.5rem;
   cursor: pointer;
 }
 
-#play-pause {
-  padding:1;
+.player-icon {
+  color: #fff;
   font-size: 2rem;
-  margin: 0 1rem;
+  margin: 0 5rem;
   cursor: pointer;
-}
-
-
-#time-control {
-  width: 50vw;
-  vertical-align: 0.15rem;
-}
-
-.current-time{
-  display: inline-block;
-  padding-left: 0.5rem;
-}
-
-.total-time{
-  display: inline-block;
-  padding-left: 0.5rem;
-}
-
-.ion-volume-low {
-  display: inline-block;
-  padding-right: 0.5rem;
-  font-size: 1.6rem;
-}
-
-.ion-volume-high {
-  display: inline-block;
-  padding-right: 0.5rem;
-  font-size: 1.6rem;
 }
 
 .seek-bar {
   width: 50vw;
   vertical-align: 0.15rem;
+}
+
+.current-time {
+  display: inline-block;
   padding-right: 0.5rem;
+}
+
+.time-left {
+  display: inline-block;
+  padding-left: 0.5rem;
+}
+
+.volume-bar {
+  vertical-align: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.volume-icon {
+  display: inline-block;
+  padding-right: 0.5rem;
+  font-size: 1.6rem;
 }
 
 #time-control {

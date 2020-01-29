@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import albumData from './../data/albums';
+import AlbumData from '../data/albums';
 import PlayerBar from './PlayerBar';
 
 class Album extends Component {
   constructor(props) {
      super(props);
 
-const album = albumData.find( album => {
+const album = AlbumData.find( album => {
   return album.slug === this.props.match.params.slug
 });
 
@@ -162,6 +162,7 @@ render() {
             <div id="release-info">{this.state.album.releaseInfo}</div>
           </div>
         </section>
+        <div className="song-list-container">
         <table id="song-list">
            <colgroup>
              <col id="song-number-column" />
@@ -182,6 +183,7 @@ render() {
                )}
            </tbody>
          </table>
+         </div>
          <PlayerBar
              isPlaying={this.state.isPlaying}
              currentSong={this.state.currentSong}
