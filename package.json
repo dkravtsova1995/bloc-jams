@@ -1,5 +1,5 @@
 {
-  "name": "bloc-jams-react",
+  "name": "bloc-jams-react2",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://dkravtsova1995.github.io/bloc-jams-react2",
@@ -13,8 +13,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d dist",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
